@@ -22,8 +22,10 @@ jobs:
 
       - name: Commit crafted code
         run: |
-          git config --global user.name "code-crafter-bot"
-          git config --global user.email "crafter-bot@github.com"
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "actions@github.com"
           git add crafted_code.py
           git commit -m "Hourly crafted code update"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
