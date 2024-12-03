@@ -23,11 +23,11 @@ jobs:
         run: python craft_code.py
 
       - name: Commit crafted code
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Action Bot"
           git config --global user.email "actions@github.com"
           git add crafted_code.py
           git commit -m "Hourly crafted code update" || echo "No changes to commit."
-          git push origin HEAD
-        env:
-          GITHUB_TO
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.rep
