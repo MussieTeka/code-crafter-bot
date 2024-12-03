@@ -1,0 +1,28 @@
+name: Code Crafter Bot
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+
+jobs:
+  craft_code_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run code crafter
+        run: python craft_code.py
+
+      - name: Commit crafted code
+        run: |
+          git config --global user.name "code-crafter-bot"
+          git config --global user.email "crafter-bot@github.com"
+          git add crafted_code.py
+          git commit -m "Hourly crafted code update"
+          git push
