@@ -3,6 +3,7 @@ name: Code Crafter Bot
 on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:  # Allows manual runs
 
 jobs:
   craft_code_job:
